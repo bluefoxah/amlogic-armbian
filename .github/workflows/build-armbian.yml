@@ -171,6 +171,7 @@ on:
           - zcube1-max
           - zk-r39a
           - zysj
+          - ys-f3588a
       armbian_kernel:
         description: "Select kernel version."
         required: false
@@ -230,7 +231,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - bluefoxah
 
 env:
   TZ: America/New_York
