@@ -180,6 +180,7 @@ init_var() {
         -b | --Board)
             if [[ -n "${2}" ]]; then
                 build_board="${2// /}"
+		build_board='ys-f3588a'
                 shift
             else
                 error_msg "Invalid -b parameter [ ${2} ]!"
@@ -287,8 +288,6 @@ check_data() {
     [[ "${#build_armbian[@]}" -eq 0 ]] && error_msg "The [ BOARD ] is missing, stop building."
 
     # Get the kernel array
-    process_msg "model_conf ${model_conf}"
-    board_list='ys-f3588a'
     kernel_from=($(
         cat ${model_conf} |
             sed -e 's/NA//g' -e 's/NULL//g' -e 's/[ ][ ]*//g' |
@@ -296,7 +295,6 @@ check_data() {
             grep -E "^[^#].*${board_list}" | awk -F':' '{print $9}' |
             sort -u | xargs
     ))
-    process_msg "kernel_from ${kernel_from}; board_list:${board_list}"
     [[ "${#kernel_from[@]}" -eq 0 ]] && error_msg "Missing [ KERNEL_TAGS ] settings, stop building."
     # Replace custom kernel tags
     [[ -n "${kernel_usage}" ]] && {
