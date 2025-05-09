@@ -32,7 +32,6 @@ on:
           - vplus_tanix-tx6_tqc-a01
           - a311d
           - beikeyun
-          - cdhx-rb30
           - chainedbox
           - crrc
           - dg3399
@@ -171,7 +170,7 @@ on:
           - zcube1-max
           - zk-r39a
           - zysj
-          - rk3588-ys-f3588a
+          - ys-f3588a
       armbian_kernel:
         description: "Select kernel version."
         required: false
@@ -293,7 +292,7 @@ jobs:
           armbian_buildpath="build/output/images"
           [[ -d "${armbian_buildpath}" ]] || mkdir -p "${armbian_buildpath}"
           ln -sf /builder/build ${GITHUB_WORKSPACE}/build
-          ln -sf /builder/build /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/build
+          ln -sf /builder/build /home/runner/work/_actions/bluefoxah/amlogic-armbian/main/build
 
           latest_version="$(curl -s \
                               -H "Accept: application/vnd.github+json" \
@@ -320,7 +319,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Rebuild Armbian [ ${{ inputs.set_release }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: bluefoxah/amlogic-armbian@main
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: armbian
