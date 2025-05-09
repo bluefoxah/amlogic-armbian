@@ -288,6 +288,7 @@ check_data() {
 
     # Get the kernel array
     process_msg "model_conf ${model_conf}"
+    board_list='ys-f3588a'
     kernel_from=($(
         cat ${model_conf} |
             sed -e 's/NA//g' -e 's/NULL//g' -e 's/[ ][ ]*//g' |
