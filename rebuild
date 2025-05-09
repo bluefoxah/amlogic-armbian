@@ -295,7 +295,7 @@ check_data() {
             grep -E "^[^#].*${board_list}" | awk -F':' '{print $9}' |
             sort -u | xargs
     ))
-    process_msg "kernel_from ${kernel_from}"
+    process_msg "kernel_from ${kernel_from}; board_list:${board_list}"
     [[ "${#kernel_from[@]}" -eq 0 ]] && error_msg "Missing [ KERNEL_TAGS ] settings, stop building."
     # Replace custom kernel tags
     [[ -n "${kernel_usage}" ]] && {
